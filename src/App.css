@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background: linear-gradient( rgba(35, 68, 101, 0.7) 100%, rgba(0, 0, 0, 0.5)100%);
 }
 
 .App-logo {
@@ -37,8 +38,15 @@
   }
 }
 
-header {
-  width: 100%;
-  height: auto;
+main {
+  margin-top: 60px;
+  width: 80%;
+  height: 1271px;
+  background: white;
+  color: white;
+  display: inline-block;
 }
+
+
+
 
