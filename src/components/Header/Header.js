@@ -6,10 +6,10 @@ const Header = () => {
         <nav>
             <ul>
                 <li class={style['float-left']}>
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class={style['float-left']}>
-                    <a href="#">Products</a>
+                    <a href="/products">Products</a>
                 </li>
                 <li class={style['float-right']}>
                     <a class="active" href="#">Login</a>
