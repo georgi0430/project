@@ -5,7 +5,7 @@ form {
 }
 
 label {
-    color: white;
+    color: black;
 }
 
 input {
@@ -15,7 +15,7 @@ input {
 }
 
 input:focus {
-    background-color: teal;
+    outline-color: teal;
     color:white;
 }
 
@@ -28,16 +28,15 @@ form button {
     margin-top: 1%;
     padding: 1%;
     width: 10%;
-    background-color: white;
-    color: #234465;
+    background-color: teal;
+    color: white;
     border-radius: 6px;
     border: none;
     cursor: pointer;
 }
 
 form button:hover {
-    font-weight: bold;
-    background-color: teal;
+    background-color: #00AEAE;
 }
 
 form h1 {

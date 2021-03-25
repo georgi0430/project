@@ -1,15 +1,3 @@
-main {
-    margin-top: 60px;
-    width: 100%;
-    height: 1271px;
-    background: linear-gradient( rgba(35, 68, 101, 0.7) 100%, rgba(0, 0, 0, 0.5)100%);
-    background-position: center;
-    background-size: cover;
-    background-repeat: none;
-    color: white;
-    display: inline-block;
-}
-
 form {
     padding-top: 10vh;
     padding-bottom: 17vh;
@@ -17,7 +5,7 @@ form {
 }
 
 label {
-    color: white;
+    color: black;
 }
 
 input {
@@ -27,7 +15,7 @@ input {
 }
 
 input:focus {
-    background-color: teal;
+    outline-color: teal;
     color:white;
 }
 
@@ -40,16 +28,14 @@ form button {
     margin-top: 1%;
     padding: 1%;
     width: 10%;
-    background-color: white;
-    color: #234465;
+    color: white;
     border-radius: 6px;
     border: none;
     cursor: pointer;
 }
 
 form button:hover {
-    font-weight: bold;
-    background-color: teal;
+    background-color: #00AEAE;
 }
 
 form h1 {

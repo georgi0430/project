@@ -39,14 +39,12 @@
 }
 
 main {
-  margin-top: 60px;
   width: 80%;
-  height: 1271px;
+  height: 100%;
   background: white;
-  color: white;
+  color: black;
   display: inline-block;
 }
-
 
 
 
