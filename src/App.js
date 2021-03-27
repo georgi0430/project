@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import firebase from './firebase'
 
 // import logo from './logo.svg';
 
@@ -30,51 +29,42 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('compnentdidmount');
+    let cars = [];
     carService.getAll()
-    .then(res => {
-      res.forEach(doc => {
-        console.log(doc.data());
+      .then(res => {
+        res.forEach(doc => {
+          const data = {};
+          const id = doc.id
+          Object.assign(data, { id })
+          Object.assign(data, doc.data())
+          cars.push(data)
+        })
+        this.setState({ cars })
       })
-    })
+  }
+
+  getCars() {
+    return this.state.cars;
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <main>
-          <Switch>
-            <Route path="/" component={Main} />
-            {/* <Route path="/products" component={Products} />
+        <Switch>
+          <Route path="/" exact>
+            <Main cars={this.getCars()} />
+          </Route>
+          {/* <Route path="/products" component={Products} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} /> */}
-          </Switch>
-        </main>
+          <Route render={() => <h1 >Error Page</h1>} />
+        </Switch>
         <Footer />
       </div>
     )
   }
 
 }
-
-
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <Header />
-//       <main>
-//         <Switch>
-//           <Route path="/" component={Main} exact='true' />
-//           <Route path="/products" component={Products} />
-//           <Route path="/register" component={Register} />
-//           <Route path="/login" component={Login} />
-//         </Switch>
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// }
 
 export default App;

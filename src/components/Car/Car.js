@@ -6,10 +6,10 @@ const Car = ({
     price
 }) => {
     return (
-        <div class="product-card">
-            <img src={imageUrl}></img>
+        <div className="product-card">
+            <img src={imageUrl} alt=""></img>
             <h1>{carName}</h1>
-            <span class="price">${price}</span>
+            <span className="price">${price}</span>
             <p><button>Details</button></p>
         </div>
     )

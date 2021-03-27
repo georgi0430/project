@@ -5,17 +5,17 @@ const Header = () => {
         <header>
             <nav>
                 <ul>
-                    <li class={style['float-left']}>
+                    <li className={style['float-left']}>
                         <a href="/">Home</a>
                     </li>
-                    <li class={style['float-left']}>
+                    <li className={style['float-left']}>
                         <a href="/products">Products</a>
                     </li>
-                    <li class={style['float-right']}>
-                        <a class="active" href="/login">Login</a>
+                    <li className={style['float-right']}>
+                        <a className="active" href="/login">Login</a>
                     </li>
-                    <li class={style['float-right']}>
-                        <a class="active" href="/register">Register</a>
+                    <li className={style['float-right']}>
+                        <a className="active" href="/register">Register</a>
                     </li>
                 </ul>
             </nav>
