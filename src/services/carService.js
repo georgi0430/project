@@ -1,6 +1,16 @@
 import firebase from '../firebase';
 
-export const getAll = () => {
+const getAll = () => {
     return firebase.firestore().collection('cars').get()
 }
+
+const getOne = (id) => {
+    return firebase.firestore().collection('cars').doc(id).get()
+}
+export {
+    getAll,
+    getOne
+}
+
+
 

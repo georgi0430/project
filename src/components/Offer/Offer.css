@@ -1,0 +1,54 @@
+.offer-container {
+    width: 100%;
+}
+
+.offer-container img {
+    width: 60%;
+}
+
+.info-container {
+    width: 100%;
+    background-color: #f6f6f6;
+}
+
+#title {
+    width: 100%;
+    color: teal;
+    font-weight: bolder;
+    font-size: 50px;
+    padding-bottom: 20px;
+}
+
+#specs {
+    width: 30%;
+    display: inline-block;
+}
+
+#price {
+    width: 30%;
+    display: inline-block;
+}
+
+#price h3 {
+    color: red;
+    font-size: 50px;
+}
+
+
+.hoverTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.hoverTable td{
+    padding:7px; 
+    border: none;
+}
+ 
+.hoverTable tr{
+    background: #f6f6f6;
+}
+
+.hoverTable tr:hover {
+    background-color: #00b4b4;
+}

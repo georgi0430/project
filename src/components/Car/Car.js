@@ -1,16 +1,18 @@
 import './Car.css'
 
 const Car = ({
+    id,
     carName,
     imageUrl,
     price
 }) => {
+    const offerPath = `/offer/${id}`
     return (
         <div className="product-card">
             <img src={imageUrl} alt=""></img>
             <h1>{carName}</h1>
             <span className="price">${price}</span>
-            <p><button>Details</button></p>
+            <p><a href={offerPath}><button>Details</button></a></p>
         </div>
     )
 }

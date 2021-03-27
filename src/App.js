@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
+import Offer from './components/Offer/Offer';
 // import Products from './components/Products/Products';
 
 // import Register from './components/Auth/Register/Register';
@@ -15,9 +16,6 @@ import Footer from './components/Footer/Footer';
 import './App.css';
 
 import * as carService from './services/carService';
-
-
-
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +42,7 @@ class App extends Component {
   }
 
   getCars() {
+    console.log(this.state.cars)
     return this.state.cars;
   }
 
@@ -55,6 +54,7 @@ class App extends Component {
           <Route path="/" exact>
             <Main cars={this.getCars()} />
           </Route>
+          <Route path="/offer/:id" component={Offer} />
           {/* <Route path="/products" component={Products} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} /> */}

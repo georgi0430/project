@@ -12,6 +12,7 @@ const Main = ({
                 {cars.map(x => 
                     <Car 
                         key={x.id}
+                        id={x.id}
                         carName={x.carName}
                         imageUrl={x.imageUrl}
                         price={x.price}
