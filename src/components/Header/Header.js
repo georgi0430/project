@@ -9,7 +9,10 @@ const Header = () => {
                         <a href="/">Home</a>
                     </li>
                     <li className={style['float-left']}>
-                        <a href="/products">Products</a>
+                        <a href="/cars">Cars</a>
+                    </li>
+                    <li className={style['float-left']}>
+                        <a href="/sell">Sell</a>
                     </li>
                     <li className={style['float-right']}>
                         <a className="active" href="/login">Login</a>
