@@ -1,30 +1,30 @@
-form {
+.register-form form {
     padding-top: 10vh;
     padding-bottom: 17vh;
     text-align: center;
 }
 
-label {
+.register-form label {
     color: black;
 }
 
-input {
+.register-form input {
     display: block;
     color: black;
     margin: 0 auto;
 }
 
-input:focus {
+.register-form input:focus {
     outline-color: teal;
-    color:white;
+    color:black;
 }
 
-::placeholder {
+.register-form ::placeholder {
     color: black;
     font-weight: bold;
 }
 
-form button {
+.register-form form button {
     margin-top: 1%;
     padding: 1%;
     width: 10%;
@@ -35,16 +35,16 @@ form button {
     cursor: pointer;
 }
 
-form button:hover {
+.register-form form button:hover {
     background-color: #00AEAE;
 }
 
-form h1 {
+.register-form form h1 {
     font-size: 40px;
     color: black;
 }
 
-form input {
+.register-form form input {
     padding: .5%;
     border-radius: 6px;
     width: 15%;

@@ -8,10 +8,9 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Offer from './components/Offer/Offer';
 import SellOffer from './components/Sell/Sell';
-// import Products from './components/Products/Products';
 
-// import Register from './components/Auth/Register/Register';
-// import Login from './components/Auth/Login/Login';
+import Register from './components/Auth/Register/Register';
+import Login from './components/Auth/Login/Login';
 
 import Footer from './components/Footer/Footer';
 import './App.css';
@@ -23,7 +22,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      cars: []
+      cars: [],
+      currnentUser: null,
     }
   }
 
@@ -57,9 +57,8 @@ class App extends Component {
           </Route>
           <Route path="/offer/:id" component={Offer} />
           <Route path="/sell" component={SellOffer} />
-          {/* <Route path="/products" component={Products} />
-            <Route path="/register" component={Register} />
-            <Route path="/login" component={Login} /> */}
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} /> */}
           <Route render={() => <h1 >Error Page</h1>} />
         </Switch>
         <Footer />

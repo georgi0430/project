@@ -1,49 +1,50 @@
-form {
+.login-form form {
     padding-top: 10vh;
     padding-bottom: 17vh;
     text-align: center;
 }
 
-label {
+.login-form label {
     color: black;
 }
 
-input {
+.login-form input {
     display: block;
     color: black;
     margin: 0 auto;
 }
 
-input:focus {
+.login-form input:focus {
     outline-color: teal;
-    color:white;
+    color:black;
 }
 
-::placeholder {
+.login-form ::placeholder {
     color: black;
     font-weight: bold;
 }
 
-form button {
+.login-form form button {
     margin-top: 1%;
     padding: 1%;
     width: 10%;
+    background-color: teal;
     color: white;
     border-radius: 6px;
     border: none;
     cursor: pointer;
 }
 
-form button:hover {
+.login-form form button:hover {
     background-color: #00AEAE;
 }
 
-form h1 {
+.login-form form h1 {
     font-size: 40px;
     color: black;
 }
 
-form input {
+.login-form form input {
     padding: .5%;
     border-radius: 6px;
     width: 15%;

@@ -20,7 +20,7 @@ main .offer-create {
 
 .offer-create input:focus {
     outline-color: teal;
-    color:white;
+    color:black;
 }
 
 .offer-create ::placeholder {
@@ -54,7 +54,14 @@ main .offer-create {
     width: 15%;
 }
 
-select {
+.offer-create select {
     width: 16%;
     display: inline-block;
 }
+
+.offer-create textarea {
+    width: 16%;
+    height: 100px;
+    display: inline-block;
+}
+

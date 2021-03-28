@@ -12,7 +12,7 @@
     width: 100%;
   }
   
-  .price {
+  .product-card .price {
     color: grey;
     font-size: 22px;
   }
