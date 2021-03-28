@@ -5,6 +5,9 @@ import * as carService from '../../services/carService';
 const SellOffer = ({
     history,
 }) => {
+    if(!localStorage.getItem('auth')) {
+        history.push('/login')
+    }
     const onCreateOfferHandler = (e) => {
         e.preventDefault();
         const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description } = e.target

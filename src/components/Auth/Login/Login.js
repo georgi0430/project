@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import './Login.css'
 import { login } from '../../../services/authService';
+
 
 const Login = ({
     history
 }) => {
+    if(localStorage.getItem('auth')) {
+        history.push('/')
+    }
+
     const onLoginHandler = (e) => {
         e.preventDefault();
         login(e.target)

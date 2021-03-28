@@ -23,27 +23,26 @@ class App extends Component {
 
     this.state = {
       cars: [],
-      currnentUser: null,
+      currentUser: null,
     }
   }
 
   componentDidMount() {
     let cars = [];
     carService.getAll()
-      .then(res => {
-        res.forEach(doc => {
-          const data = {};
-          const id = doc.id
-          Object.assign(data, { id })
-          Object.assign(data, doc.data())
-          cars.push(data)
-        })
-        this.setState({ cars })
+    .then(res => {
+      res.forEach(doc => {
+        const data = {};
+        const id = doc.id
+        Object.assign(data, { id })
+        Object.assign(data, doc.data())
+        cars.push(data)
       })
+      this.setState({ cars })
+    })
   }
-
+  
   getCars() {
-    console.log(this.state.cars)
     return this.state.cars;
   }
 
@@ -56,9 +55,9 @@ class App extends Component {
             <Main cars={this.getCars()} />
           </Route>
           <Route path="/offer/:id" component={Offer} />
-          <Route path="/sell" component={SellOffer} />
+          <Route path="/sell" component={SellOffer}/>
           <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} /> */}
+          <Route path="/login" component={Login} />
           <Route render={() => <h1 >Error Page</h1>} />
         </Switch>
         <Footer />

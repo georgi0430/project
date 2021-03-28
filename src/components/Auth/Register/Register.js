@@ -4,6 +4,10 @@ import { register } from '../../../services/authService';
 const Register = ({
     history
 }) => {
+    if(localStorage.getItem('auth')) {
+        history.push('/')
+    }
+
     const onRegisterHandler = (e) => {
         e.preventDefault();
         register(e.target)
