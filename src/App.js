@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Offer from './components/Offer/Offer';
 import SellOffer from './components/Sell/Sell';
+import Brand from './components/Cars/ByBrand/Brand';
 
 import Register from './components/Auth/Register/Register';
 import Login from './components/Auth/Login/Login';
@@ -60,7 +61,8 @@ class App extends Component {
           <Route path="/sell" component={SellOffer}/>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          <Route paht="/logout" component={Logout} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/cars/:brand" component={Brand} />
           <Route render={() => <h1 >Error Page</h1>} />
         </Switch>
         <Footer />

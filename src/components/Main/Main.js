@@ -36,7 +36,7 @@ const Main = ({
 
             <h1>Brands</h1>
             <div className={style.brands}>
-                <a href="#" alt=""><img src="https://brandslogo.net/wp-content/uploads/2015/09/bmw-flat-logo-vector-download.jpg" alt=""></img></a>
+                <a href="/cars/BMW" alt=""><img src="https://brandslogo.net/wp-content/uploads/2015/09/bmw-flat-logo-vector-download.jpg" alt=""></img></a>
             </div>
             <div className={style.brands}>
                 <a href="#" alt=""><img src="https://logosvector.net/wp-content/uploads/2014/10/audi-logo-vector-download.jpg" alt=""></img></a>

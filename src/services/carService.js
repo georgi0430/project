@@ -4,6 +4,10 @@ const getAll = () => {
     return firebase.firestore().collection('cars').get()
 }
 
+const getAllByBrand = (brand) => {
+    return firebase.firestore().collection('cars').where('brand', '==', brand).get()
+}
+
 const getOne = (id) => {
     return firebase.firestore().collection('cars').doc(id).get()
 }
@@ -35,7 +39,8 @@ const create = (e) => {
 export {
     getAll,
     getOne,
-    create
+    getAllByBrand,
+    create,
 }
 
 
