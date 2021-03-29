@@ -1,0 +1,56 @@
+.offer-form form {
+    padding-bottom: 17vh;
+    text-align: center;
+}
+
+.offer-form label {
+    color: black;
+}
+
+.offer-form input {
+    display: block;
+    color: black;
+    margin: 0 auto;
+}
+
+.offer-form input:focus {
+    outline-color: teal;
+    color:black;
+}
+
+.offer-form ::placeholder {
+    color: black;
+    font-weight: bold;
+}
+
+.offer-form form button {
+    margin-top: 1%;
+    padding: 1%;
+    width: 10%;
+    color: white;
+    background-color: teal;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.offer-form form button:hover {
+    background-color: #00AEAE;
+}
+
+.offer-form form input {
+    padding: .5%;
+    border-radius: 6px;
+    width: 15%;
+}
+
+.offer-form select {
+    width: 16%;
+    display: inline-block;
+}
+
+.offer-form textarea {
+    width: 16%;
+    height: 100px;
+    display: inline-block;
+}

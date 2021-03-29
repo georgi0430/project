@@ -1,67 +1,9 @@
-main .offer-create {
-    width: 100%
-}
-
-.offer-create form {
-    padding-top: 10vh;
-    padding-bottom: 17vh;
-    text-align: center;
-}
-
-.offer-create label {
-    color: black;
-}
-
-.offer-create input {
-    display: block;
-    color: black;
-    margin: 0 auto;
-}
-
-.offer-create input:focus {
-    outline-color: teal;
-    color:black;
-}
-
-.offer-create ::placeholder {
-    color: black;
-    font-weight: bold;
-}
-
-.offer-create form button {
-    margin-top: 1%;
-    padding: 1%;
-    width: 10%;
-    color: white;
-    background-color: teal;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-}
-
-.offer-create form button:hover {
-    background-color: #00AEAE;
-}
-
-.offer-create form h1 {
+.offer-create h1 {
+    border: 0;
     font-size: 40px;
     color: black;
 }
 
-.offer-create form input {
-    padding: .5%;
-    border-radius: 6px;
-    width: 15%;
+main .offer-create {
+    width: 100%
 }
-
-.offer-create select {
-    width: 16%;
-    display: inline-block;
-}
-
-.offer-create textarea {
-    width: 16%;
-    height: 100px;
-    display: inline-block;
-}
-

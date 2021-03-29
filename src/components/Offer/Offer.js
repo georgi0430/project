@@ -1,5 +1,6 @@
 import { Redirect, useHistory, withRouter, Switch, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as carService from '../../services/carService';
 
 import './Offer.css'
@@ -14,7 +15,7 @@ const Offer = ({
     }
     let [car, setCar] = useState({});
     let [creator, setCreator] = useState({})
-    
+    const offerId = match.params.id;
     
     useEffect(() => {
         carService.getOne(match.params.id)
@@ -60,7 +61,7 @@ const Offer = ({
                             </tr>
                             {creator ?
                                 <div>
-                                    <button className="button button-edit">Edit</button>
+                                    <Link to={`/offer/${offerId}/edit`}><button className="button button-edit">Edit</button></Link>
                                     <button className="button button-delete">Delete</button>
                                 </div>
                                 :
