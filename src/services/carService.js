@@ -9,7 +9,7 @@ const getOne = (id) => {
 }
 
 const create = (e) => {
-    const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description } = e
+    const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description, price } = e
 
     let car = {
         brand: brand.value,
@@ -19,7 +19,8 @@ const create = (e) => {
         gearboxType: gearboxType.value,
         productionYear: productionYear.value,
         color: color.value,
-        description: description.value
+        description: description.value,
+        price: price.value
     }
 
     firebase.firestore().collection('cars').add(car)

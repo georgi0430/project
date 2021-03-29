@@ -9,6 +9,9 @@ const Offer = ({
     match,
     history
 }) => {
+    if (!localStorage.getItem('auth')) {
+        history.push('/')
+    }
     let [car, setCar] = useState({});
 
     useEffect(() => {
@@ -26,7 +29,7 @@ const Offer = ({
                 <img src={car.imageUrl} alt=""></img>
                 <div className="info-container">
                     <div id="title">
-                        {car.carName}
+                        {car.brand} {car.model}
                     </div>
                     <div id="specs">
                         <table className="hoverTable">
@@ -46,8 +49,22 @@ const Offer = ({
 
                     </div>
                     <div id="price">
-                        <p>Price:</p>
-                        <h3>{car.price}</h3>
+                        <table className="hoverTable">
+                            <tr>
+                                <td>Price:</td>
+                                <td><span>{car.price}</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="description">
+                        <table className="hoverTable">
+                            <tr>
+                                <td>Description:</td>
+                            </tr>
+                            <tr>
+                                <td>{car.description}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

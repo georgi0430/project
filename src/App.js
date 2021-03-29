@@ -11,6 +11,8 @@ import SellOffer from './components/Sell/Sell';
 
 import Register from './components/Auth/Register/Register';
 import Login from './components/Auth/Login/Login';
+import Logout from './components/Auth/Logout/Logout';
+
 
 import Footer from './components/Footer/Footer';
 import './App.css';
@@ -58,6 +60,7 @@ class App extends Component {
           <Route path="/sell" component={SellOffer}/>
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route paht="/logout" component={Logout} />
           <Route render={() => <h1 >Error Page</h1>} />
         </Switch>
         <Footer />

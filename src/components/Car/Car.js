@@ -2,7 +2,8 @@ import './Car.css'
 
 const Car = ({
     id,
-    carName,
+    model,
+    brand,
     imageUrl,
     price
 }) => {
@@ -10,7 +11,7 @@ const Car = ({
     return (
         <div className="product-card">
             <img src={imageUrl} alt=""></img>
-            <h1>{carName}</h1>
+            <h1>{brand} {model}</h1>
             <span className="price">${price}</span>
             <p><a href={offerPath}><button>Details</button></a></p>
         </div>

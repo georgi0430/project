@@ -30,6 +30,15 @@ header .topnav a.active {
     color: white;
 }
 
+header .topnav .float-right {
+    float: right;
+}
+
+header .topnav .float-right a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
 header .topnav .search-container {
     float: right;
 }

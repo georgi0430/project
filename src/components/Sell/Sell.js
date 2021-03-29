@@ -10,7 +10,6 @@ const SellOffer = ({
     }
     const onCreateOfferHandler = (e) => {
         e.preventDefault();
-        const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description } = e.target
 
         carService.create(e.target)
     };

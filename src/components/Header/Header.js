@@ -4,7 +4,7 @@ import './Header.css'
 const Header = () => {
     let [isLogged, setIsLogged] = useState({});
     let [user, setUser] = useState({});
-
+    user = user.toString()
     useEffect(() => {
         if (localStorage.getItem('auth')) {
             let currentEmail = JSON.parse(localStorage.getItem('auth')).email
@@ -14,7 +14,6 @@ const Header = () => {
             setIsLogged(false)
         }
     }, [])
-
     return (
         <header>
             <div className="topnav">
@@ -29,11 +28,18 @@ const Header = () => {
                         <a href="/login">Login</a>
                     </div>
                 }
-                <div className="search-container">
-                    <form action="/action_page.php">
-                        <input type="text" placeholder="Search.." name="search"></input>
-                        <button type="submit">Search</button>
-                    </form>
+                <div className="float-right">
+                    {isLogged ?
+                        <a href="/logout">Logout, {user}</a>
+                        :
+                        null
+                    }
+                    <div className="search-container">
+                        <form action="/action_page.php">
+                            <input type="text" placeholder="Search.." name="search"></input>
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </header>

@@ -5,20 +5,35 @@ import Car from '../Car/Car'
 const Main = ({
     cars
 }) => {
+    const noCars = cars.length == 0 ? true : false
     return (
         <main>
             <h1>Sale Products</h1>
-            <div>
-                {cars.map(x => 
-                    <Car 
-                        key={x.id}
-                        id={x.id}
-                        carName={x.carName}
-                        imageUrl={x.imageUrl}
-                        price={x.price}
-                    />
+            {noCars ?
+                <div>
+                    <h1>No Offers Available</h1>
+                </div>
+                :
+                <div>
+                    {cars.map(x =>
+                        <Car
+                            key={x.id}
+                            id={x.id}
+                            brand={x.brand}
+                            color={x.color}
+                            description={x.description}
+                            engineType={x.engineType}
+                            gearboxType={x.gearboxType}
+                            imageUrl={x.imageUrl}
+                            model={x.model}
+                            productionYear={x.productionYear}
+                            price={x.price}
+                        />
                     )}
-            </div>
+
+                </div>
+            }
+
             <h1>Brands</h1>
             <div className={style.brands}>
                 <a href="#" alt=""><img src="https://brandslogo.net/wp-content/uploads/2015/09/bmw-flat-logo-vector-download.jpg" alt=""></img></a>
