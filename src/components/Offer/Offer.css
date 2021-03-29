@@ -46,15 +46,63 @@
     border: none;
 }
  
-.hoverTable tr{
+.hoverTable .hover{
     background: #f6f6f6;
 }
 
-.hoverTable tr:hover {
+.hoverTable .hover:hover {
     background-color: #00b4b4;
 }
 
 .offer-container #description {
     display: inline-block;
     width: 60%;
+}
+
+.offer-container button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.offer-container .button-buy {
+    background-color: white; 
+    color: black; 
+    width: 100%;
+    border: 2px solid green;
+}
+  
+.offer-container .button-buy:hover {
+    background-color: green;
+    color: white;
+}
+
+.offer-container .button-edit {
+    background-color: white; 
+    color: black; 
+    border: 2px solid blue;
+}
+
+.offer-container .button-edit:hover {
+    background-color: blue;
+    color: white;
+}
+
+.offer-container .button-delete {
+    background-color: white; 
+    color: black; 
+    border: 2px solid red;
+}
+
+.offer-container .button-delete:hover {
+    background-color: red;
+    color: white;
 }

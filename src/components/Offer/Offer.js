@@ -13,13 +13,18 @@ const Offer = ({
         history.push('/')
     }
     let [car, setCar] = useState({});
-
+    let [creator, setCreator] = useState({})
+    
+    
     useEffect(() => {
         carService.getOne(match.params.id)
             .then(res => {
                 setCar(res.data());
+                setCreator(carService.isCreator(res.data().creator, JSON.parse(localStorage.getItem('auth')).email))
             });
     }, []);
+
+
 
     return (
         <main>
@@ -33,16 +38,16 @@ const Offer = ({
                     </div>
                     <div id="specs">
                         <table className="hoverTable">
-                            <tr>
+                            <tr className="hover">
                                 <td>Production Year:</td><td>2015</td>
                             </tr>
-                            <tr>
+                            <tr className="hover">
                                 <td>Engine:</td><td>Petrol</td>
                             </tr>
-                            <tr>
+                            <tr className="hover">
                                 <td>Gearbox:</td><td>Manual</td>
                             </tr>
-                            <tr>
+                            <tr className="hover">
                                 <td>Color:</td><td>Red</td>
                             </tr>
                         </table>
@@ -50,18 +55,27 @@ const Offer = ({
                     </div>
                     <div id="price">
                         <table className="hoverTable">
-                            <tr>
-                                <td>Price:</td>
+                            <tr className="hover">
                                 <td><span>{car.price}</span></td>
                             </tr>
+                            {creator ?
+                                <div>
+                                    <button className="button button-edit">Edit</button>
+                                    <button className="button button-delete">Delete</button>
+                                </div>
+                                :
+                                <tr>
+                                    <button className="button button-buy">Buy</button>
+                                </tr>
+                            }
                         </table>
                     </div>
                     <div id="description">
                         <table className="hoverTable">
-                            <tr>
+                            <tr className="description">
                                 <td>Description:</td>
                             </tr>
-                            <tr>
+                            <tr className="hover">
                                 <td>{car.description}</td>
                             </tr>
                         </table>

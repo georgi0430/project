@@ -13,6 +13,11 @@ const getOne = (id) => {
 }
 
 const create = (e) => {
+    let formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
     const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description, price } = e
 
     let car = {
@@ -24,7 +29,8 @@ const create = (e) => {
         productionYear: productionYear.value,
         color: color.value,
         description: description.value,
-        price: price.value
+        price: formatter.format(Number(price.value)),
+        creator: JSON.parse(localStorage.getItem('auth')).email
     }
 
     firebase.firestore().collection('cars').add(car)
@@ -36,11 +42,21 @@ const create = (e) => {
             console.error("Error adding document: ", error);
         });
 }
+
+const isCreator = (creator, currentEmail) => {
+    if (creator == currentEmail) {
+        return true
+    } else {
+        return false
+    }
+}
+
 export {
     getAll,
     getOne,
     getAllByBrand,
     create,
+    isCreator
 }
 
 
