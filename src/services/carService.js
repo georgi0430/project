@@ -43,6 +43,30 @@ const create = (e) => {
         });
 }
 
+const editOffer = (id, e) => {
+    const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description, price } = e
+
+    let formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    
+    let car = {
+        brand: brand.value,
+        model: model.value,
+        imageUrl: imageUrl.value,
+        engineType: engineType.value,
+        gearboxType: gearboxType.value,
+        productionYear: productionYear.value,
+        color: color.value,
+        description: description.value,
+        price: formatter.format(Number(price.value)),
+        creator: JSON.parse(localStorage.getItem('auth')).email
+    }
+
+    return firebase.firestore().collection('cars').doc(id).update(car);
+}
+
 const isCreator = (creator, currentEmail) => {
     if (creator == currentEmail) {
         return true
@@ -56,7 +80,8 @@ export {
     getOne,
     getAllByBrand,
     create,
-    isCreator
+    editOffer,
+    isCreator,
 }
 
 

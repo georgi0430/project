@@ -34,18 +34,18 @@ class App extends Component {
   componentDidMount() {
     let cars = [];
     carService.getAll()
-    .then(res => {
-      res.forEach(doc => {
-        const data = {};
-        const id = doc.id
-        Object.assign(data, { id })
-        Object.assign(data, doc.data())
-        cars.push(data)
+      .then(res => {
+        res.forEach(doc => {
+          const data = {};
+          const id = doc.id
+          Object.assign(data, { id })
+          Object.assign(data, doc.data())
+          cars.push(data)
+        })
+        this.setState({ cars })
       })
-      this.setState({ cars })
-    })
   }
-  
+
   getCars() {
     return this.state.cars;
   }
@@ -60,7 +60,7 @@ class App extends Component {
           </Route>
           <Route path="/offer/:id" exact component={Offer} />
           <Route path="/offer/:id/edit" component={EditOffer} />
-          <Route path="/sell" component={SellOffer}/>
+          <Route path="/sell" component={SellOffer} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />

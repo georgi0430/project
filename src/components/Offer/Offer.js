@@ -40,16 +40,16 @@ const Offer = ({
                     <div id="specs">
                         <table className="hoverTable">
                             <tr className="hover">
-                                <td>Production Year:</td><td>2015</td>
+                                <td>Production Year:</td><td>{car.productionYear}</td>
                             </tr>
                             <tr className="hover">
-                                <td>Engine:</td><td>Petrol</td>
+                                <td>Engine:</td><td>{car.engineType}</td>
                             </tr>
                             <tr className="hover">
-                                <td>Gearbox:</td><td>Manual</td>
+                                <td>Gearbox:</td><td>{car.gearboxType}</td>
                             </tr>
                             <tr className="hover">
-                                <td>Color:</td><td>Red</td>
+                                <td>Color:</td><td>{car.color}</td>
                             </tr>
                         </table>
 

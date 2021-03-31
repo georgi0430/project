@@ -23,11 +23,16 @@ const EditOffer = ({
     }
     const onEditOfferHandler = (e) => {
         e.preventDefault();
+        carService.editOffer(offerId, e.target)
+        .then (res => {
+            console.log(res);
+            history.push(`/offer/${offerId}`)
+        })
     };
     return (
         <main className="offer-create">
             <h1>Edit Offer</h1>
-            <Form handler={onEditOfferHandler} carInfo={car}/>
+            <Form handler={onEditOfferHandler} offerId={offerId}/>
         </main>
     )
 }
