@@ -62,7 +62,7 @@ const Offer = ({
                             {creator ?
                                 <div>
                                     <Link to={`/offer/${offerId}/edit`}><button className="button button-edit">Edit</button></Link>
-                                    <button className="button button-delete">Delete</button>
+                                    <Link to={`/offer/${offerId}/delete`}><button className="button button-delete">Delete</button></Link>
                                 </div>
                                 :
                                 <tr>

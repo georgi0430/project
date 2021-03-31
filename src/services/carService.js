@@ -50,7 +50,7 @@ const editOffer = (id, e) => {
         style: 'currency',
         currency: 'USD',
     });
-    
+
     let car = {
         brand: brand.value,
         model: model.value,
@@ -67,6 +67,13 @@ const editOffer = (id, e) => {
     return firebase.firestore().collection('cars').doc(id).update(car);
 }
 
+const deleteOffer = (id) => {
+    firebase.firestore().collection('cars').doc(id).delete()
+    .then(res => {
+        window.location = '/';
+    })
+}
+
 const isCreator = (creator, currentEmail) => {
     if (creator == currentEmail) {
         return true
@@ -81,6 +88,7 @@ export {
     getAllByBrand,
     create,
     editOffer,
+    deleteOffer,
     isCreator,
 }
 

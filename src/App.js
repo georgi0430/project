@@ -7,8 +7,11 @@ import { Route, Switch } from 'react-router-dom'
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Offer from './components/Offer/Offer';
-import EditOffer from './components/Offer/EditOffer';
+
 import SellOffer from './components/Sell/Sell';
+import EditOffer from './components/Offer/EditOffer';
+import DeleteOffer from './components/Offer/DeleteOffer';
+
 import Brand from './components/Cars/ByBrand/Brand';
 
 import Register from './components/Auth/Register/Register';
@@ -59,7 +62,8 @@ class App extends Component {
             <Main cars={this.getCars()} />
           </Route>
           <Route path="/offer/:id" exact component={Offer} />
-          <Route path="/offer/:id/edit" component={EditOffer} />
+          <Route path="/offer/:id/edit" exact component={EditOffer} />
+          <Route path="/offer/:id/delete" exact component={DeleteOffer} />
           <Route path="/sell" component={SellOffer} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
