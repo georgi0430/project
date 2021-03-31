@@ -29,6 +29,12 @@ const Header = () => {
                     </div>
                 }
                 <div className="float-right">
+                    {/* TODO */}
+                    {isLogged ?
+                        <a href="/my-offers">My Offers</a>
+                        :
+                        null
+                    }
                     {isLogged ?
                         <a href="/logout">Logout, {user}</a>
                         :

@@ -8,6 +8,11 @@ const getAllByBrand = (brand) => {
     return firebase.firestore().collection('cars').where('brand', '==', brand).get()
 }
 
+const getAllForUser = (email) => {
+    console.log(email);
+    return firebase.firestore().collection('cars').where('creator', '==', email).get()
+}
+
 const getOne = (id) => {
     return firebase.firestore().collection('cars').doc(id).get()
 }
@@ -86,6 +91,7 @@ export {
     getAll,
     getOne,
     getAllByBrand,
+    getAllForUser,
     create,
     editOffer,
     deleteOffer,

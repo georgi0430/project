@@ -14,6 +14,7 @@ import DeleteOffer from './components/Offer/DeleteOffer';
 
 import Brand from './components/Cars/ByBrand/Brand';
 
+import MyOffers from './components/User/MyOffers'
 import Register from './components/Auth/Register/Register';
 import Login from './components/Auth/Login/Login';
 import Logout from './components/Auth/Logout/Logout';
@@ -68,6 +69,7 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
+          <Route path="/my-offers" component={MyOffers} />
           <Route path="/cars/:brand" component={Brand} />
           <Route render={() => <h1 >Error Page</h1>} />
         </Switch>
