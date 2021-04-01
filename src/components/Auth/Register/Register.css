@@ -1,5 +1,4 @@
 .register-form form {
-    padding-top: 10vh;
     padding-bottom: 17vh;
     text-align: center;
 }
@@ -48,4 +47,9 @@
     padding: .5%;
     border-radius: 6px;
     width: 15%;
+}
+
+.register-form .error {
+    color: red;
+    display: inline-block;
 }

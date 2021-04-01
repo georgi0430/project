@@ -25,7 +25,6 @@ const EditOffer = ({
         e.preventDefault();
         carService.editOffer(offerId, e.target)
         .then (res => {
-            console.log(res);
             history.push(`/offer/${offerId}`)
         })
     };

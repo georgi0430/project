@@ -12,7 +12,6 @@ const SellOffer = ({
     }
     const onCreateOfferHandler = (e) => {
         e.preventDefault();
-
         carService.create(e.target)
     };
     return (

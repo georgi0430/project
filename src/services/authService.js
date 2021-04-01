@@ -21,19 +21,8 @@ const login = (e) => {
 const register = (e) => {
     const { email, password, repeatPassword } = e
 
-    if (password.value !== repeatPassword.value) {
-        return
-    }
-
-    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
-        .then((user) => {
-            window.location = '/login';
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ..
-        });
+    return firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+        
 }
 
 const logout = () => {

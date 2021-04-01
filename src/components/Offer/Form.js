@@ -19,6 +19,7 @@ class Form extends Component {
             color: '',
             description: '',
             price: '',
+            errors: {},
         }
     }
 
@@ -32,14 +33,96 @@ class Form extends Component {
         }
     }
 
+    handleValidation() {
+        let errors = {};
+        let formIsValid = true;
+
+        if (this.state.brand.length == 0) {
+            formIsValid = false;
+            errors.brand = 'Cannot be empty';
+        }
+
+        if (this.state.model.length == 0) {
+            formIsValid = false;
+            errors.model = 'Must specify the model'
+        }
+
+        if (this.state.imageUrl.length == 0) {
+            formIsValid = false;
+            errors.imageUrl = 'Cannot be empty'
+        }
+
+        if (this.state.engineType.length == 0) {
+            formIsValid = false;
+            errors.engineType = 'Must select one'
+        }
+
+        if (this.state.gearboxType.length == 0) {
+            formIsValid = false;
+            errors.gearboxType = 'Must select one'
+        }
+
+        if (this.state.productionYear.length == 0) {
+            formIsValid = false;
+            errors.productionYear = 'Cannot be empty'
+        }
+
+        if (this.state.color.length == 0) {
+            formIsValid = false;
+            errors.color = 'Cannot be empty'
+        }
+
+        if (this.state.price.length == 0) {
+            formIsValid = false;
+            errors.price = 'Cannot be empty'
+        }
+
+        const imgUrRegex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
+        if (!imgUrRegex.exec(this.state.imageUrl)) {
+            formIsValid = false;
+            errors.imageUrl = 'Please input a valid URL'
+        }
+
+        if (!Number(this.state.productionYear)) {
+            formIsValid = false;
+            errors.productionYear = 'Please input a valid year'
+        }
+
+        if (!Number(this.state.price)) {
+            formIsValid = false;
+            errors.price = 'Please input a valid price'
+        }
+
+        this.setState({ errors: errors });
+        return formIsValid;
+    }
+
+
+    contactSubmit = (e) => {
+        e.preventDefault();
+
+        if (this.handleValidation()) {
+            this.props.handler(e)
+        } else {
+            window.scrollTo(0, 0)
+        }
+
+    }
+
+    handleChange(e, field) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     render() {
         return (
             <div className="offer-form">
-                <form onSubmit={this.props.handler}>
+                <form onSubmit={this.contactSubmit}>
                     <label>Select Brand:</label>
                     <div>
                         {this.state.isEdit ?
-                            <select id="multi-select" name="brand" value={[this.state.brand]} onChange={e => this.setState({ brand: e.target.value })} multiple>
+                            <select id="multi-select" name="brand" value={[this.state.brand]} onChange={this.handleChange.bind(this)}>
                                 <option value="BMW">BMW</option>
                                 <option value="Audi">Audi</option>
                                 <option value="Toyota">Toyota</option>
@@ -49,7 +132,7 @@ class Form extends Component {
                                 <option value="Mitsubishi">Mitsubishi</option>
                             </select>
                             :
-                            <select id="multi-select" name="brand" multiple>
+                            <select id="multi-select" name="brand" onChange={this.handleChange.bind(this)}>
                                 <option value="BMW">BMW</option>
                                 <option value="Audi">Audi</option>
                                 <option value="Toyota">Toyota</option>
@@ -60,71 +143,105 @@ class Form extends Component {
                             </select>
                         }
                     </div>
+                    <div>
+                        <span className="error">{this.state.errors.brand}</span>
+                    </div>
                     <label>Model</label>
-                    {this.state.isEdit ? <input id="model" type="text" value={this.state.model} onChange={e => this.setState({ model: e.target.value })} name="model"></input>
+                    {this.state.isEdit ?
+                        <input id="model" type="text" value={this.state.model} name="model" onChange={this.handleChange.bind(this)}></input>
                         :
-                        <input id="model" type="text" placeholder="Model" name="model"></input>
+                        <input id="model" type="text" placeholder="Model" name="model" onChange={this.handleChange.bind(this)}></input>
                     }
+                    <div>
+                        <span className="error">{this.state.errors.model}</span>
+                    </div>
                     <label>Image URL</label>
-                    {this.state.isEdit ? <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl" value={this.state.imageUrl} onChange={e => this.setState({ imageUrl: e.target.value })}></input>
+                    {this.state.isEdit ?
+                        <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange.bind(this)}></input>
                         :
-                        <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl"></input>
+                        <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl" onChange={this.handleChange.bind(this)}></input>
                     }
+                    <div>
+                        <span className="error">{this.state.errors.imageUrl}</span>
+                    </div>
                     <label>Select Engine Type:</label>
                     <div>
                         {this.state.isEdit ?
-                            <select id="multi-select" name="engineType" value={[this.state.engineType]} onChange={e => this.setState({ engineType: e.target.value })} multiple>
+                            <select id="multi-select" name="engineType" value={[this.state.engineType]} onChange={this.handleChange.bind(this)}>
                                 <option value="Petrol">Petrol</option>
                                 <option value="Diesel">Diesel</option>
                                 <option value="Electric">Eletric</option>
                             </select>
                             :
-                            <select id="multi-select" name="engineType" multiple>
+                            <select id="multi-select" name="engineType" onChange={this.handleChange.bind(this)}>
                                 <option value="Petrol">Petrol</option>
                                 <option value="Diesel">Diesel</option>
                                 <option value="Electric">Eletric</option>
                             </select>
                         }
+                    </div>
+                    <div>
+                        <span className="error">{this.state.errors.engineType}</span>
                     </div>
                     <label>Select Gearbox Type:</label>
                     <div>
                         {this.state.isEdit ?
-                            <select id="multi-select" name="gearboxType" value={[this.state.gearboxType]} onChange={e => this.setState({ gearboxType: e.target.value })} multiple>
+                            <select id="multi-select" name="gearboxType" value={[this.state.gearboxType]} onChange={this.handleChange.bind(this)}>
                                 <option value="Manual">Manual</option>
                                 <option value="Automatic">Automatic</option>
                             </select>
                             :
-                            <select id="multi-select" name="gearboxType" multiple>
+                            <select id="multi-select" name="gearboxType" onChange={this.handleChange.bind(this)}>
                                 <option value="Manual">Manual</option>
                                 <option value="Automatic">Automatic</option>
                             </select>
+
                         }
                     </div>
+                    <div>
+                        <span className="error">{this.state.errors.gearboxType}</span>
+                    </div>
                     <label>Production Year</label>
-                    {this.state.isEdit ? <input id="productionYear" type="text" value={this.state.productionYear} onChange={e => this.setState({ productionYear: e.target.value })} name="productionYear"></input>
+                    {this.state.isEdit ?
+                        <input id="productionYear" type="text" value={this.state.productionYear} name="productionYear" onChange={this.handleChange.bind(this)}></input>
                         :
-                        <input id="productionYear" type="text" placeholder="Production Year" name="productionYear"></input>
+                        <input id="productionYear" type="text" placeholder="Production Year" name="productionYear" onChange={this.handleChange.bind(this)}></input>
                     }
+
+                    <div>
+                        <span className="error">{this.state.errors.productionYear}</span>
+                    </div>
                     <label>Color</label>
                     {this.state.isEdit ?
-                        <input id="color" type="text" value={this.state.color} onChange={e => this.setState({ color: e.target.value })} name="color"></input>
+                        <input id="color" type="text" value={this.state.color} name="color" onChange={this.handleChange.bind(this)}></input>
                         :
-                        <input id="color" type="text" placeholder="Color" name="color"></input>
+                        <input id="color" type="text" placeholder="Color" name="color" onChange={this.handleChange.bind(this)}></input>
                     }
+
+                    <div>
+                        <span className="error">{this.state.errors.color}</span>
+                    </div>
                     <label>Description</label>
                     <div>
                         {this.state.isEdit ?
-                            <textarea name="description" value={this.state.description} onChange={e => this.setState({ description: e.target.value })}></textarea>
+                            <textarea name="description" value={this.state.description} onChange={this.handleChange.bind(this)}></textarea>
                             :
-                            <textarea name="description" placeholder="Enter description here..."></textarea>
+                            <textarea name="description" placeholder="Enter description here..." onChange={this.handleChange.bind(this)}></textarea>
                         }
+                    </div>
+                    <div>
+                        <span className="error">{this.state.errors.description}</span>
                     </div>
                     <label>Price</label>
                     {this.state.isEdit ?
-                        <input id="price" type="text" value={this.state.price} onChange={e => this.setState({ price: e.target.value })} name="price"></input>
+                        <input id="price" type="text" value={this.state.price} name="price" onChange={this.handleChange.bind(this)}></input>
                         :
-                        <input id="price" type="text" placeholder="Price" name="price"></input>
+                        <input id="price" type="text" placeholder="Price" name="price" onChange={this.handleChange.bind(this)}></input>
                     }
+
+                    <div>
+                        <span className="error">{this.state.errors.price}</span>
+                    </div>
                     {this.state.isisEdit ?
                         <button type="submit">Edit Offer</button>
                         :
@@ -135,134 +252,5 @@ class Form extends Component {
         )
     }
 }
-
-// const Form = ({
-//     handler,
-//     carInfo
-// }) => {
-//     let isEdit = false
-
-//     if (carInfo) {
-//         isEdit = true
-
-//     }
-//     const [state, setState] = useState({
-//         brand: carInfo.brand,
-//         model: carInfo.model,
-//         imageUrl: carInfo.imageUrl,
-//         engineType: carInfo.engineType,
-//         gearboxType: carInfo.gearboxType,
-//         productionYear: carInfo.productionYear,
-//         color: carInfo.color,
-//         description: carInfo.description,
-//         price: carInfo.price,
-//     })
-
-//     const handleChange = e => {
-//         setState({
-//             [e.target.name]: e.target.value
-//         });
-//     };
-//     return (
-//         <div className="offer-form">
-//             <form onSubmit={handler}>
-//                 <label for="brand">Select Brand:</label>
-//                 <div>
-//                     {isEdit ?
-//                         <select id="multi-select" name="brand" selected={[carInfo.brand]} multiple>
-//                             <option value="BMW">BMW</option>
-//                             <option value="Audi">Audi</option>
-//                             <option value="Toyota">Toyota</option>
-//                             <option value="VW">VW</option>
-//                             <option value="Mercedes Benz">Mercedes Benz</option>
-//                             <option value="Honda">Honda</option>
-//                             <option value="Mitsubishi">Mitsubishi</option>
-//                         </select>
-//                         :
-//                         <select id="multi-select" name="brand" multiple>
-//                             <option value="BMW">BMW</option>
-//                             <option value="Audi">Audi</option>
-//                             <option value="Toyota">Toyota</option>
-//                             <option value="VW">VW</option>
-//                             <option value="Mercedes Benz">Mercedes Benz</option>
-//                             <option value="Honda">Honda</option>
-//                             <option value="Mitsubishi">Mitsubishi</option>
-//                         </select>
-//                     }
-//                 </div>
-//                 <label for="model">Model</label>
-//                 {isEdit ? <input id="model" type="text" value={carInfo.model} name="model"></input>
-//                     :
-//                     <input id="model" type="text" placeholder="Model" name="model"></input>
-//                 }
-//                 <label for="model">Image URL</label>
-//                 {isEdit ? <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl" value={carInfo.imageUrl}></input>
-//                     :
-//                     <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl"></input>
-//                 }
-//                 <label for="engine-type">Select Engine Type:</label>
-//                 <div>
-//                     {isEdit ?
-//                         <select id="multi-select" name="engineType" value={[carInfo.engineType]} multiple>
-//                             <option value="Petrol">Petrol</option>
-//                             <option value="Diesel">Diesel</option>
-//                             <option value="Electric">Eletric</option>
-//                         </select>
-//                         :
-//                         <select id="multi-select" name="engineType" multiple>
-//                             <option value="Petrol">Petrol</option>
-//                             <option value="Diesel">Diesel</option>
-//                             <option value="Electric">Eletric</option>
-//                         </select>
-//                     }
-//                 </div>
-//                 <label for="gearbox">Select Gearbox Type:</label>
-//                 <div>
-//                     {isEdit ?
-//                         <select id="multi-select" name="gearboxType" value={[carInfo.gearboxType]} multiple>
-//                             <option value="Manual">Manual</option>
-//                             <option value="Automatic">Automatic</option>
-//                         </select>
-//                         :
-//                         <select id="multi-select" name="gearboxType" multiple>
-//                             <option value="Manual">Manual</option>
-//                             <option value="Automatic">Automatic</option>
-//                         </select>
-//                     }
-//                 </div>
-//                 <label for="production-year">Production Year</label>
-//                 {isEdit ? <input id="productionYear" type="text" value={state.productionYear} onChange={handleChange} name="productionYear"></input>
-//                     :
-//                     <input id="productionYear" type="text" placeholder="Production Year" name="productionYear"></input>
-//                 }
-//                 <label for="color">Color</label>
-//                 {isEdit ?
-//                     <input id="color" type="text" value={carInfo.color} name="color"></input>
-//                     :
-//                     <input id="color" type="text" placeholder="Color" name="color"></input>
-//                 }
-//                 <label for="description">Description</label>
-//                 <div>
-//                     {isEdit ?
-//                         <textarea name="description" value={carInfo.description}></textarea>
-//                         :
-//                         <textarea name="description" placeholder="Enter description here..."></textarea>
-//                     }
-//                 </div>
-//                 <label for="price">Price</label>
-//                 {isEdit ?
-//                     <input id="price" type="text" value={carInfo.price} name="price"></input>
-//                     :
-//                     <input id="price" type="text" placeholder="Price" name="price"></input>
-//                 }
-//                 {isEdit ?
-//                     <button type="submit">Edit Offer</button>
-//                     :
-//                     <button type="submit">Submit Offer</button>
-//                 }
-//             </form>
-//         </div >
-//     )
-// }
 
 export default Form;
