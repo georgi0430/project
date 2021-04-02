@@ -13,6 +13,10 @@ const Offer = ({
     if (!localStorage.getItem('auth')) {
         history.push('/')
     }
+    let formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
     let [car, setCar] = useState({});
     let [creator, setCreator] = useState({})
     const offerId = match.params.id;
@@ -57,7 +61,7 @@ const Offer = ({
                     <div id="price">
                         <table className="hoverTable">
                             <tr className="hover">
-                                <td><span>{car.price}</span></td>
+                                <td><span>{formatter.format(Number(car.price))}</span></td>
                             </tr>
                             {creator ?
                                 <div>

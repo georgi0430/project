@@ -18,10 +18,6 @@ const getOne = (id) => {
 }
 
 const create = (e) => {
-    let formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
 
     const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description, price } = e
 
@@ -34,7 +30,7 @@ const create = (e) => {
         productionYear: productionYear.value,
         color: color.value,
         description: description.value,
-        price: formatter.format(Number(price.value)),
+        price: price.value,
         creator: JSON.parse(localStorage.getItem('auth')).email
     }
 
@@ -50,12 +46,6 @@ const create = (e) => {
 
 const editOffer = (id, e) => {
     const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description, price } = e
-
-    let formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    });
-
     let car = {
         brand: brand.value,
         model: model.value,
@@ -65,7 +55,7 @@ const editOffer = (id, e) => {
         productionYear: productionYear.value,
         color: color.value,
         description: description.value,
-        price: formatter.format(Number(price.value)),
+        price: price.value,
         creator: JSON.parse(localStorage.getItem('auth')).email
     }
 
