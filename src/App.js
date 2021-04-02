@@ -60,7 +60,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route path="/" exact>
-            <Main cars={this.getCars()} />
+            <Main title="Sale Products" cars={this.getCars()} showBrands="true" />
           </Route>
           <Route path="/offer/:id" exact component={Offer} />
           <Route path="/offer/:id/edit" exact component={EditOffer} />

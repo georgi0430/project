@@ -1,8 +1,8 @@
-h1 {
+.brands-main h1 {
     color: black;
 }
 
-.brands {
+.brands-main .brands {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 200px;
   margin: auto;
@@ -12,7 +12,7 @@ h1 {
   margin: 1%;
 }
 
-.brands img {
+.brands-main .brands img {
   width: 200px;
   height: 200px;
 }

@@ -41,10 +41,9 @@ class MyOffers extends Component {
 
     render() {
         return (
-            <main>
-                <h1>My Offers</h1>
-                <Main cars={this.getCars()} />
-            </main >
+            <div>
+                <Main title="My Offers" cars={this.getCars()} />
+            </div>
         )
     }
 }
