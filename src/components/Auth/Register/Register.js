@@ -1,8 +1,11 @@
 
 import { Component } from 'react';
-
 import './Register.css';
+
 import { register } from '../../../services/authService';
+import ErrorNotification from '../../Error/Error';
+import { Route, Switch } from 'react-router-dom'
+
 
 class Register extends Component {
     constructor(props) {
@@ -84,14 +87,12 @@ class Register extends Component {
     }
 
     render() {
-        console.log(this.state.errors);
         return (
             <main className="register-form">
+
                 <form onSubmit={this.contactSubmit}>
                     <h1>Register</h1>
-                    <div>
-                        <span className="error">{this.state.errors.catchErr}</span>
-                    </div>
+                    {this.state.errors.catchErr ? <ErrorNotification message={this.state.errors.catchErr} /> : ''}
                     <label for="username">Username</label>
                     <input id="email" type="text" name="email" placeholder="E-mail" onChange={this.handleChange.bind(this)}></input>
                     <div>
@@ -109,38 +110,13 @@ class Register extends Component {
                     </div>
                     <button type="submit">Register</button>
                 </form>
+                <div>
+                    <p>Already have an account ? <a href="/login">Login Now</a></p>
+                </div>
             </main>
         )
     }
-
 }
 
-
-// const Register = ({
-//     history
-// }) => {
-//     if (localStorage.getItem('auth')) {
-//         history.push('/')
-//     }
-
-//     const onRegisterHandler = (e) => {
-//         e.preventDefault();
-//         register(e.target)
-//     };
-//     return (
-//         <main className="register-form">
-//             <form onSubmit={onRegisterHandler}>
-//                 <h1>Register</h1>
-//                 <label for="username">Username</label>
-//                 <input id="email" type="text" placeholder="E-mail" name="email"></input>
-//                 <label for="username">Password</label>
-//                 <input id="password" type="password" placeholder="******" name="password"></input>
-//                 <label for="repeat-password">Repeat Password</label>
-//                 <input id="repeat-password" type="password" placeholder="******" name="repeatPassword"></input>
-//                 <button type="submit">Register</button>
-//             </form>
-//         </main>
-//     )
-// }
 
 export default Register

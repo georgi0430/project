@@ -49,3 +49,9 @@
     border-radius: 6px;
     width: 15%;
 }
+
+.login-form .error {
+    color: red;
+    display: inline-block;
+}
+

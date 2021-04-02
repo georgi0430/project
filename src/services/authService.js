@@ -2,20 +2,8 @@ import firebase from '../firebase';
 
 const login = (e) => {
     const { email, password } = e;
-
-    firebase.auth().signInWithEmailAndPassword(email.value, password.value)
-        .then((user) => {
-            const userInfo = {
-                email: user.user.email,
-                userId: user.user.uid
-            }
-            localStorage.setItem('auth', JSON.stringify(userInfo));
-            window.location = '/'
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-        });
+    return firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+        
 }
 
 const register = (e) => {
