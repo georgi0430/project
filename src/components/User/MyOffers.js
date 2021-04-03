@@ -22,7 +22,6 @@ class MyOffers extends Component {
         getAllForUser(JSON.parse(localStorage.getItem('auth')).email)
             .then(res => {
                 res.forEach(doc => {
-                    console.log(doc.data());
                     const data = {};
                     const id = doc.id
                     Object.assign(data, { id })

@@ -18,7 +18,7 @@ import MyOffers from './components/User/MyOffers'
 import Register from './components/Auth/Register/Register';
 import Login from './components/Auth/Login/Login';
 import Logout from './components/Auth/Logout/Logout';
-
+import Search from './components/Search/Search';
 
 import Footer from './components/Footer/Footer';
 import './App.css';
@@ -71,6 +71,7 @@ class App extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="/my-offers" component={MyOffers} />
           <Route path="/cars/:brand" component={Brand} />
+          <Route path="/search" component={Search} />
           <Route render={() => <h1 >Error Page</h1>} />
         </Switch>
         <Footer />

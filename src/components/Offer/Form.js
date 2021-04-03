@@ -10,6 +10,7 @@ class Form extends Component {
 
         this.state = {
             isEdit: false,
+            isSearch: false,
             brand: '',
             model: '',
             imageUrl: '',
@@ -31,15 +32,27 @@ class Form extends Component {
                     this.setState(res.data())
                 })
         }
+        if (this.props.isSearch) {
+            this.setState({ isSearch: true })
+        }
     }
 
     handleValidation() {
         let errors = {};
         let formIsValid = true;
 
-        if (this.state.brand.length == 0) {
-            formIsValid = false;
-            errors.brand = 'Cannot be empty';
+        if (this.props.isSearch) {
+            if (this.state.productionYear.length !== 0 && !Number(this.state.productionYear)) {
+                formIsValid = false;
+                errors.productionYear = 'Please input a valid year'
+            }
+
+            if (this.state.price.length !== 0 && !Number(this.state.price)) {
+                formIsValid = false;
+                errors.price = 'Please input a valid price'
+            }
+            this.setState({ errors: errors });
+            return formIsValid
         }
 
         if (this.state.model.length == 0) {
@@ -50,16 +63,6 @@ class Form extends Component {
         if (this.state.imageUrl.length == 0) {
             formIsValid = false;
             errors.imageUrl = 'Cannot be empty'
-        }
-
-        if (this.state.engineType.length == 0) {
-            formIsValid = false;
-            errors.engineType = 'Must select one'
-        }
-
-        if (this.state.gearboxType.length == 0) {
-            formIsValid = false;
-            errors.gearboxType = 'Must select one'
         }
 
         if (this.state.productionYear.length == 0) {
@@ -155,15 +158,25 @@ class Form extends Component {
                     <div>
                         <span className="error">{this.state.errors.model}</span>
                     </div>
-                    <label>Image URL</label>
+                    {this.state.isSearch ? null
+                        :
+                        <label>Image URL</label>
+                    }
+
                     {this.state.isEdit ?
                         <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange.bind(this)}></input>
                         :
-                        <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl" onChange={this.handleChange.bind(this)}></input>
+                        this.state.isSearch ?
+                            null
+                            :
+                            <input id="imageUrl" type="text" placeholder="Image URL" name="imageUrl" onChange={this.handleChange.bind(this)}></input>
                     }
-                    <div>
-                        <span className="error">{this.state.errors.imageUrl}</span>
-                    </div>
+                    {this.state.isSearch ? null
+                        :
+                        <div>
+                            <span className="error">{this.state.errors.imageUrl}</span>
+                        </div>
+                    }
                     <label>Select Engine Type:</label>
                     <div>
                         {this.state.isEdit ?
@@ -195,7 +208,6 @@ class Form extends Component {
                                 <option value="Manual">Manual</option>
                                 <option value="Automatic">Automatic</option>
                             </select>
-
                         }
                     </div>
                     <div>
@@ -221,17 +233,26 @@ class Form extends Component {
                     <div>
                         <span className="error">{this.state.errors.color}</span>
                     </div>
-                    <label>Description</label>
-                    <div>
-                        {this.state.isEdit ?
-                            <textarea name="description" value={this.state.description} onChange={this.handleChange.bind(this)}></textarea>
-                            :
-                            <textarea name="description" placeholder="Enter description here..." onChange={this.handleChange.bind(this)}></textarea>
-                        }
-                    </div>
-                    <div>
-                        <span className="error">{this.state.errors.description}</span>
-                    </div>
+                    {this.state.isSearch ? null
+                        :
+                        <label>Description</label>
+                    }
+                    {this.state.isSearch ? null
+                        :
+                        <div>
+                            {this.state.isEdit ?
+                                <textarea name="description" value={this.state.description} onChange={this.handleChange.bind(this)}></textarea>
+                                :
+                                <textarea name="description" placeholder="Enter description here..." onChange={this.handleChange.bind(this)}></textarea>
+                            }
+                        </div>
+                    }
+                    {this.state.isSearch ? null
+                        :
+                        <div>
+                            <span className="error">{this.state.errors.description}</span>
+                        </div>
+                    }
                     <label>Price</label>
                     {this.state.isEdit ?
                         <input id="price" type="text" value={this.state.price} name="price" onChange={this.handleChange.bind(this)}></input>
@@ -245,7 +266,7 @@ class Form extends Component {
                     {this.state.isisEdit ?
                         <button type="submit">Edit Offer</button>
                         :
-                        <button type="submit">Submit Offer</button>
+                        <button type="submit">Submit</button>
                     }
                 </form>
             </div >

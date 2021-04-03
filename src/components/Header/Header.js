@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './Header.css'
 
+import Search from '../Search/Search';
+
 const Header = () => {
     let [isLogged, setIsLogged] = useState({});
     let [user, setUser] = useState({});
@@ -28,25 +30,14 @@ const Header = () => {
                         <a href="/login">Login</a>
                     </div>
                 }
-                <div className="float-right">
-                    {/* TODO */}
-                    {isLogged ?
+                {isLogged ?
+                    <div className="float-right">
+                        <a href="/search">Advanced Search</a>
                         <a href="/my-offers">My Offers</a>
-                        :
-                        null
-                    }
-                    {isLogged ?
                         <a href="/logout">Logout, {user}</a>
-                        :
-                        null
-                    }
-                    <div className="search-container">
-                        <form action="/action_page.php">
-                            <input type="text" placeholder="Search.." name="search"></input>
-                            <button type="submit">Search</button>
-                        </form>
                     </div>
-                </div>
+                    : null
+                }
             </div>
         </header>
     )
