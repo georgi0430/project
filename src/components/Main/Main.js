@@ -8,6 +8,7 @@ const Main = ({
     showBrands
 }) => {
     const noCars = cars.length == 0 ? true : false
+
     return (
         <main>
             <h1>{title}</h1>
@@ -19,18 +20,18 @@ const Main = ({
                 <div>
                     {cars.map(x =>
                         <Car
-                            key={x.id}
-                            id={x.id}
-                            brand={x.brand}
-                            color={x.color}
-                            description={x.description}
-                            engineType={x.engineType}
-                            gearboxType={x.gearboxType}
-                            imageUrl={x.imageUrl}
-                            model={x.model}
-                            productionYear={x.productionYear}
-                            price={x.price}
-                        />
+                        key={x.id}
+                        id={x.id}
+                        brand={x.brand}
+                        color={x.color}
+                        description={x.description}
+                        engineType={x.engineType}
+                        gearboxType={x.gearboxType}
+                        imageUrl={x.imageUrl}
+                        model={x.model}
+                        productionYear={x.productionYear}
+                        price={x.price}
+                    />
                     )}
 
                 </div>

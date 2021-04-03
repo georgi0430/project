@@ -3,30 +3,42 @@ import './Search.css'
 import { Component } from "react";
 import { getAll, getAllSearch } from '../../services/carService';
 import Form from '../Offer/Form';
+import SearchResults from './SearchResults';
 
-
+import Main from '../Main/Main';
 
 class Search extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            results: []
+            results: [],
+            isSubmitted: false
         }
     }
 
     onSubmitSearch = (e) => {
         e.preventDefault();
-        getAllSearch(e.target);
+        getAllSearch(e.target)
+            .then(res => {
+                this.setState({
+                    results: res,
+                    isSubmitted: true
+                })
+            })
+
     }
 
     getCars() {
-        console.log(this.state.results);
-        return this.state.results;
+        return this.state.results
     }
 
     render() {
-
+        if (this.state.isSubmitted) {
+            return (
+                <Main cars={this.getCars()} />
+            )
+        }
         return (
             <main className="offer-create">
                 <h1>Advanced Search</h1>

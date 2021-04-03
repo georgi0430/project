@@ -20,47 +20,33 @@ const getAllSearch = (e) => {
             data[x[1].name] = x[1].value
         }
     })
+
     let firstResults = [];
     let finalResults = [];
-    getAllByBrand(data.brand.toLowerCase())
+    return getAllByBrand(data.brand.toLowerCase())
         .then(res => {
             res.forEach(doc => {
-                firstResults.push(doc.data())
+                const data = {};
+                const id = doc.id
+                Object.assign(data, { id })
+                Object.assign(data, doc.data())
+                firstResults.push(data)
             })
             firstResults.forEach(obj => {
-                console.log(obj);
                 let isMatch = true;
                 Object.entries(data).forEach(([key, value]) => {
-                    if(value.toLowerCase() == obj[key].toLowerCase()) {
-                        console.log('true');
-                    } else {
-                        console.log('false');
+                    if (value.toLowerCase() !== obj[key].toLowerCase()) {
                         isMatch = false
                     }
                 })
-                if(isMatch) {
+                if (isMatch) {
                     finalResults.push(obj)
                 }
             })
-            console.log(finalResults);
+            return finalResults;
         })
         .catch(err => console.log(err))
-
-    // const search = query.split(' ')
-    // let results = [];
-    // search.forEach(word => {
-    //     firebase.firestore().collection('cars').where('brand_lowercase', '==', word.toLowerCase()).get()
-    //         .then(res => {
-    //             res.forEach(doc => {
-    //                 const data = {};
-    //                 const id = doc.id
-    //                 Object.assign(data, { id })
-    //                 Object.assign(data, doc.data())
-    //                 results.push(data)
-    //             })
-    //         })
-    // })
-    // return results;
+    return finalResults
 }
 
 const getOne = (id) => {
