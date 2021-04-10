@@ -1,5 +1,5 @@
-import { Redirect, useHistory, withRouter, Switch, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import UserContext from '../../contexts/UserContext';
+import { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import * as carService from '../../services/carService';
 
@@ -11,13 +11,12 @@ const Offer = ({
     match,
     history
 }) => {
-    if (!localStorage.getItem('auth')) {
-        history.push('/')
-    }
+    const { isLogged, uid } = useContext(UserContext);
     let formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
     });
+
     let [car, setCar] = useState({});
     let [creator, setCreator] = useState({})
     const offerId = match.params.id;
@@ -26,9 +25,9 @@ const Offer = ({
         carService.getOne(match.params.id)
             .then(res => {
                 setCar(res.data());
-                setCreator(carService.isCreator(res.data().creator, JSON.parse(localStorage.getItem('auth')).email))
+                setCreator(carService.isCreator(res.data().creator, uid))
             });
-    }, []);
+    }, [isLogged]);
 
 
 

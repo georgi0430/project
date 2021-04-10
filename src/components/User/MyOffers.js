@@ -1,50 +1,39 @@
-import { Component } from 'react';
+import { useEffect, useContext, useState } from 'react';
+import UserContext from '../../contexts/UserContext';
 
 import { getAllForUser } from '../../services/carService';
 
 
 import Main from '../../components/Main/Main';
 
-class MyOffers extends Component {
-    constructor(props) {
-        super(props)
+const MyOffers = () => {
+    const { isLogged, uid } = useContext(UserContext);
+    let cars = [];
+    const [data, setCars] = useState();
 
-        this.state = {
-            cars: [],
-        }
-    }
-
-    componentDidMount() {
-        if (!localStorage.getItem('auth')) {
-            window.location = "/"
-        }
-        let cars = [];
-        getAllForUser(JSON.parse(localStorage.getItem('auth')).email)
-            .then(res => {
-                res.forEach(doc => {
-                    const data = {};
-                    const id = doc.id
-                    Object.assign(data, { id })
-                    Object.assign(data, doc.data())
-                    cars.push(data)
+    useEffect(() => {
+        if (uid) {
+            getAllForUser(uid)
+                .then(res => {
+                    res.forEach(doc => {
+                        const info = {};
+                        const id = doc.id
+                        Object.assign(info, { id })
+                        Object.assign(info, doc.data())
+                        cars.push(info)
+                    })
+                    setCars(cars)
                 })
-                this.setState({ cars });
-            })
+        }
 
-    }
+    }, [isLogged])
 
-
-    getCars() {
-        return this.state.cars;
-    }
-
-    render() {
-        return (
-            <div>
-                <Main title="My Offers" cars={this.getCars()} />
-            </div>
-        )
-    }
+    return (
+        <div>
+            {data ? <Main title="My Offers" cars={data} /> : <Main title="My Offers" cars={[]} />}
+        </div>
+    )
 }
+
 
 export default MyOffers;

@@ -8,8 +8,8 @@ const getAllByBrand = (brand) => {
     return firebase.firestore().collection('cars').where('brand_lowercase', '==', brand.toLowerCase()).get()
 }
 
-const getAllForUser = (email) => {
-    return firebase.firestore().collection('cars').where('creator', '==', email).get()
+const getAllForUser = (uid) => {
+    return firebase.firestore().collection('cars').where('creator', '==', uid).get()
 }
 
 const getAllSearch = (e) => {
@@ -87,6 +87,8 @@ const editOffer = (id, e) => {
     let car = {
         brand: brand.value,
         model: model.value,
+        brand_lowercase: brand.value.toLowerCase(),
+        model_lowercase: model.value.toLowerCase(),
         imageUrl: imageUrl.value,
         engineType: engineType.value,
         gearboxType: gearboxType.value,
@@ -94,7 +96,6 @@ const editOffer = (id, e) => {
         color: color.value,
         description: description.value,
         price: price.value,
-        creator: JSON.parse(localStorage.getItem('auth')).email
     }
 
     return firebase.firestore().collection('cars').doc(id).update(car);
@@ -107,8 +108,8 @@ const deleteOffer = (id) => {
         })
 }
 
-const isCreator = (creator, currentEmail) => {
-    if (creator == currentEmail) {
+const isCreator = (creator, uid) => {
+    if (creator == uid) {
         return true
     } else {
         return false

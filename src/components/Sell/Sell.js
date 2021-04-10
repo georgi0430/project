@@ -3,18 +3,13 @@ import './Sell.css'
 import * as carService from '../../services/carService';
 import Form from '../Offer/Form';
 import { useEffect, useContext } from 'react';
-import userContext from '../../contexts/userContext';
+import UserContext from '../../contexts/UserContext';
 
 
 const SellOffer = ({
     history,
 }) => {
-    const { isLogged, uid } = useContext(userContext);
-    useEffect(() => {
-        if (isLogged === false) {
-            history.push('/login')
-        }
-    })
+    const { uid } = useContext(UserContext);
     const onCreateOfferHandler = (e) => {
         e.preventDefault();
         carService.create(e.target, uid)

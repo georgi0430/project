@@ -3,23 +3,20 @@ import './Login.css'
 import { login } from '../../../services/authService';
 import ErrorNotification from '../../Error/Error';
 
+import UserContext from '../../../contexts/UserContext'
+
 class Login extends Component {
+    
     constructor(props) {
         super(props)
-
+        
         this.state = {
             email: '',
             password: '',
             errors: {}
         }
     }
-
-    componentDidMount() {
-        if (localStorage.getItem('auth')) {
-            window.location = "/"
-        }
-    }
-
+   
     didCatchError(error) {
         this.setState({
             errors: error
@@ -34,7 +31,7 @@ class Login extends Component {
             errors.email = 'Cannot be empty'
         }
 
-        if(this.state.password.length === 0) {
+        if (this.state.password.length === 0) {
             formIsValid = false;
             errors.password = 'Cannot be empty'
         }

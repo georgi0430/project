@@ -17,10 +17,7 @@ const EditOffer = ({
     //             setCar(res.data());
     //         });
     // }, []);
-
-    if (!localStorage.getItem('auth')) {
-        history.push('/login')
-    }
+    
     const onEditOfferHandler = (e) => {
         e.preventDefault();
         carService.editOffer(offerId, e.target)
