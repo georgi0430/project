@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import './Form.css'
 
 import { Component } from 'react';
@@ -55,27 +54,27 @@ class Form extends Component {
             return formIsValid
         }
 
-        if (this.state.model.length == 0) {
+        if (this.state.model.length === 0) {
             formIsValid = false;
             errors.model = 'Must specify the model'
         }
 
-        if (this.state.imageUrl.length == 0) {
+        if (this.state.imageUrl.length === 0) {
             formIsValid = false;
             errors.imageUrl = 'Cannot be empty'
         }
 
-        if (this.state.productionYear.length == 0) {
+        if (this.state.productionYear.length === 0) {
             formIsValid = false;
             errors.productionYear = 'Cannot be empty'
         }
 
-        if (this.state.color.length == 0) {
+        if (this.state.color.length === 0) {
             formIsValid = false;
             errors.color = 'Cannot be empty'
         }
 
-        if (this.state.price.length == 0) {
+        if (this.state.price.length === 0) {
             formIsValid = false;
             errors.price = 'Cannot be empty'
         }

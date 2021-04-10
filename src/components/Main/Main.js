@@ -1,8 +1,8 @@
 import './Main.css'
 import Car from '../Car/Car'
 import Brands from '../Brands/Brands';
+import Sold from '../Cars/Sold/Sold';
 
-import { useState } from 'react';
 
 const Main = ({
     cars,
@@ -38,6 +38,8 @@ const Main = ({
 
                 </div>
             }
+            
+            <Sold />
 
             {showBrands ? <Brands /> : null}
 

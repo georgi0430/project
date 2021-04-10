@@ -11,6 +11,7 @@ import Offer from './components/Offer/Offer';
 import SellOffer from './components/Sell/Sell';
 import EditOffer from './components/Offer/EditOffer';
 import DeleteOffer from './components/Offer/DeleteOffer';
+import BuyOffer from './components/Offer/BuyOffer';
 import Brand from './components/Cars/ByBrand/Brand';
 
 import MyOffers from './components/User/MyOffers'
@@ -29,8 +30,6 @@ import './App.css';
 import * as carService from './services/carService';
 import * as authService from './services/authService';
 
-
-import { Redirect} from 'react-router-dom'
 
 class App extends Component {
   constructor(props) {
@@ -78,13 +77,14 @@ class App extends Component {
             <Route path="/" exact>
               <Main title="Sale Products" cars={this.getCars()} showBrands="true" />
             </Route>
-            <Route path="/offer/:id" exact component={Offer} />
-            <Route path="/offer/:id/edit" exact component={EditOffer} />
-            <Route path="/offer/:id/delete" exact component={DeleteOffer} />
+            <Route path="/offer/:id" exact component={isAuth(Offer)} />
+            <Route path="/offer/:id/edit" exact component={isAuth(EditOffer)} />
+            <Route path="/offer/:id/delete" exact component={isAuth(DeleteOffer)} />
+            <Route path="/offer/:id/buy" exact component={isAuth(BuyOffer)} />
             <Route path="/sell" component={isAuth(SellOffer)} />
             <Route path="/register" component={notAuth(Register)} />
             <Route path="/login" component={notAuth(Login)} />
-            <Route path="/logout" component={Logout} />
+            <Route path="/logout" component={isAuth(Logout)} />
             <Route path="/my-offers" component={isAuth(MyOffers)} />
             <Route path="/cars/:brand" component={Brand} />
             <Route path="/search" component={Search} />

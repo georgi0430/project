@@ -16,6 +16,7 @@ class Brand extends Component {
 
     componentDidMount() {
         const brand = this.props.match.params.brand;
+        console.log(brand);
         let cars = [];
         getAllByBrand(brand)
             .then(res => {

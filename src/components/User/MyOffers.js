@@ -3,7 +3,6 @@ import UserContext from '../../contexts/UserContext';
 
 import { getAllForUser } from '../../services/carService';
 
-
 import Main from '../../components/Main/Main';
 
 const MyOffers = () => {

@@ -3,8 +3,6 @@ import './Login.css'
 import { login } from '../../../services/authService';
 import ErrorNotification from '../../Error/Error';
 
-import UserContext from '../../../contexts/UserContext'
-
 class Login extends Component {
     
     constructor(props) {

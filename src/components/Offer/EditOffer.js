@@ -1,6 +1,5 @@
 import './EditOffer.js'
 
-// import { useEffect, useState } from 'react';
 import * as carService from '../../services/carService';
 import Form from '../Offer/Form';
 
@@ -8,15 +7,8 @@ const EditOffer = ({
     match,
     history,
 }) => {
-    // let [car, setCar] = useState({});
+
     const offerId = match.params.id;
-    
-    // useEffect(() => {
-    //     carService.getOne(match.params.id)
-    //         .then(res => {
-    //             setCar(res.data());
-    //         });
-    // }, []);
     
     const onEditOfferHandler = (e) => {
         e.preventDefault();

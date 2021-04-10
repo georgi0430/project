@@ -11,7 +11,7 @@ const Offer = ({
     match,
     history
 }) => {
-    const { isLogged, uid } = useContext(UserContext);
+    const { uid } = useContext(UserContext);
     let formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -19,15 +19,19 @@ const Offer = ({
 
     let [car, setCar] = useState({});
     let [creator, setCreator] = useState({})
+    let [bought, setBought] = useState({});
     const offerId = match.params.id;
-    
+
     useEffect(() => {
         carService.getOne(match.params.id)
             .then(res => {
                 setCar(res.data());
                 setCreator(carService.isCreator(res.data().creator, uid))
+                if(res.data().buyer.length > 0) {
+                    setBought(true)
+                }
             });
-    }, [isLogged]);
+    });
 
 
 
@@ -43,46 +47,58 @@ const Offer = ({
                     </div>
                     <div id="specs">
                         <table className="hoverTable">
-                            <tr className="hover">
-                                <td>Production Year:</td><td>{car.productionYear}</td>
-                            </tr>
-                            <tr className="hover">
-                                <td>Engine:</td><td>{car.engineType}</td>
-                            </tr>
-                            <tr className="hover">
-                                <td>Gearbox:</td><td>{car.gearboxType}</td>
-                            </tr>
-                            <tr className="hover">
-                                <td>Color:</td><td>{car.color}</td>
-                            </tr>
+                            <tbody>
+                                <tr className="hover">
+                                    <td>Production Year:</td><td>{car.productionYear}</td>
+                                </tr>
+                                <tr className="hover">
+                                    <td>Engine:</td><td>{car.engineType}</td>
+                                </tr>
+                                <tr className="hover">
+                                    <td>Gearbox:</td><td>{car.gearboxType}</td>
+                                </tr>
+                                <tr className="hover">
+                                    <td>Color:</td><td>{car.color}</td>
+                                </tr>
+                            </tbody>
                         </table>
 
                     </div>
                     <div id="price">
                         <table className="hoverTable">
-                            <tr className="hover">
-                                <td><span>{formatter.format(Number(car.price))}</span></td>
-                            </tr>
-                            {creator ?
-                                <div>
-                                    <Link to={`/offer/${offerId}/edit`}><button className="button button-edit">Edit</button></Link>
-                                    <Link to={`/offer/${offerId}/delete`}><button className="button button-delete">Delete</button></Link>
-                                </div>
-                                :
-                                <tr>
-                                    <button className="button button-buy">Buy</button>
+                            <tbody>
+                                <tr className="hover">
+                                    <td><span>{formatter.format(Number(car.price))}</span></td>
                                 </tr>
-                            }
+                                <tr>
+                                    {creator ?
+                                        <td>
+                                            <Link to={`/offer/${offerId}/edit`}><button className="button button-edit">Edit</button></Link>
+                                            <Link to={`/offer/${offerId}/delete`}><button className="button button-delete">Delete</button></Link>
+                                        </td>
+                                        :
+                                        <td>
+                                            {bought == true ?
+                                            <button className="button button-buy" disabled>SOLD OUT!</button>
+                                            :
+                                            <Link to={`/offer/${offerId}/buy`}><button className="button button-buy">Buy</button></Link>
+                                            }
+                                        </td>
+                                    }
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <div id="description">
                         <table className="hoverTable">
-                            <tr className="description">
-                                <td>Description:</td>
-                            </tr>
-                            <tr className="hover">
-                                <td>{car.description}</td>
-                            </tr>
+                            <tbody>
+                                <tr className="description">
+                                    <td>Description:</td>
+                                </tr>
+                                <tr className="hover">
+                                    <td>{car.description}</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

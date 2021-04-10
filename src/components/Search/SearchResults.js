@@ -1,11 +1,10 @@
 import {Component} from 'react';
 import Main from '../../components/Main/Main';
-import Search from './Search';
 
 class SearchResults extends Component {
     constructor(props) {
         super(props)
-
+        
         this.state = {
             cars: []
         }

@@ -2,7 +2,7 @@ import './Sell.css'
 
 import * as carService from '../../services/carService';
 import Form from '../Offer/Form';
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 
 

@@ -1,9 +1,8 @@
 import './Search.css'
 
 import { Component } from "react";
-import { getAll, getAllSearch } from '../../services/carService';
+import {  getAllSearch } from '../../services/carService';
 import Form from '../Offer/Form';
-import SearchResults from './SearchResults';
 
 import Main from '../Main/Main';
 

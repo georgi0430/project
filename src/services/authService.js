@@ -24,7 +24,7 @@ const login = (e) => {
 }
 
 const register = (e) => {
-    const { email, password, repeatPassword } = e
+    const { email, password } = e
 
     return firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
 
