@@ -2,9 +2,7 @@ import './Brand.css';
 import { Component } from 'react';
 import { getAllByBrand } from '../../../services/carService';
 
-
 import Main from '../../../components/Main/Main'
-import { Route, Switch } from 'react-router-dom'
 
 class Brand extends Component {
     constructor(props) {

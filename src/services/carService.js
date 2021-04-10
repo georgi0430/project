@@ -53,7 +53,8 @@ const getOne = (id) => {
     return firebase.firestore().collection('cars').doc(id).get()
 }
 
-const create = (e) => {
+const create = (e, uid) => {
+    console.log(uid);
 
     const { brand, model, imageUrl, engineType, gearboxType, productionYear, color, description, price } = e
 
@@ -69,13 +70,12 @@ const create = (e) => {
         color: color.value,
         description: description.value,
         price: price.value,
-        creator: JSON.parse(localStorage.getItem('auth')).email
+        creator: uid,
     }
 
     firebase.firestore().collection('cars').add(car)
         .then(function (docRef) {
             window.location = '/';
-            console.log("Document written with ID: ", docRef.id);
         })
         .catch(function (error) {
             console.error("Error adding document: ", error);

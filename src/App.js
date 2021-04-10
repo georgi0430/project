@@ -11,7 +11,6 @@ import Offer from './components/Offer/Offer';
 import SellOffer from './components/Sell/Sell';
 import EditOffer from './components/Offer/EditOffer';
 import DeleteOffer from './components/Offer/DeleteOffer';
-
 import Brand from './components/Cars/ByBrand/Brand';
 
 import MyOffers from './components/User/MyOffers'
@@ -20,10 +19,13 @@ import Login from './components/Auth/Login/Login';
 import Logout from './components/Auth/Logout/Logout';
 import Search from './components/Search/Search';
 
+import userContext from './contexts/userContext';
+
 import Footer from './components/Footer/Footer';
 import './App.css';
 
 import * as carService from './services/carService';
+import * as authService from './services/authService';
 
 class App extends Component {
   constructor(props) {
@@ -31,11 +33,18 @@ class App extends Component {
 
     this.state = {
       cars: [],
-      currentUser: null,
+      currentUser: {},
     }
   }
 
   componentDidMount() {
+    authService.isLogged()
+      .then(res => {
+        this.setState({
+          currentUser: res
+        })
+      })
+
     let cars = [];
     carService.getAll()
       .then(res => {
@@ -57,24 +66,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <Switch>
-          <Route path="/" exact>
-            <Main title="Sale Products" cars={this.getCars()} showBrands="true" />
-          </Route>
-          <Route path="/offer/:id" exact component={Offer} />
-          <Route path="/offer/:id/edit" exact component={EditOffer} />
-          <Route path="/offer/:id/delete" exact component={DeleteOffer} />
-          <Route path="/sell" component={SellOffer} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/my-offers" component={MyOffers} />
-          <Route path="/cars/:brand" component={Brand} />
-          <Route path="/search" component={Search} />
-          <Route render={() => <h1 >Error Page</h1>} />
-        </Switch>
-        <Footer />
+        <userContext.Provider value={this.state.currentUser}>
+
+          <Header userData={this.state.currentUser} />
+          <Switch>
+            <Route path="/" exact>
+              <Main title="Sale Products" cars={this.getCars()} showBrands="true" />
+            </Route>
+            <Route path="/offer/:id" exact component={Offer} />
+            <Route path="/offer/:id/edit" exact component={EditOffer} />
+            <Route path="/offer/:id/delete" exact component={DeleteOffer} />
+            <Route path="/sell" component={SellOffer} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/my-offers" component={MyOffers} />
+            <Route path="/cars/:brand" component={Brand} />
+            <Route path="/search" component={Search} />
+            <Route render={() => <h1 >Error Page</h1>} />
+          </Switch>
+          <Footer />
+        </userContext.Provider>
       </div>
     )
   }

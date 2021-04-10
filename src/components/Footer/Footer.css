@@ -1,0 +1,14 @@
+.footer-container {
+  width: 100%
+}
+
+.footer-container footer {
+    width: 80%;
+    height: 60px;
+    display: inline-block;
+    background-color: teal;
+  }
+  
+.footer-container span {
+  width: 100%;
+}

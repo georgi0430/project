@@ -1,4 +1,4 @@
-import { Component, useState } from 'react';
+import { Component } from 'react';
 import './Login.css'
 import { login } from '../../../services/authService';
 import ErrorNotification from '../../Error/Error';
@@ -29,12 +29,12 @@ class Login extends Component {
     handleVerification() {
         let errors = {};
         let formIsValid = true;
-        if (this.state.email.length == 0) {
+        if (this.state.email.length === 0) {
             formIsValid = false;
             errors.email = 'Cannot be empty'
         }
 
-        if(this.state.password.length == 0) {
+        if(this.state.password.length === 0) {
             formIsValid = false;
             errors.password = 'Cannot be empty'
         }
@@ -50,16 +50,9 @@ class Login extends Component {
             let errors = {}
             login(e.target)
                 .then((user) => {
-                    const userInfo = {
-                        email: user.user.email,
-                        userId: user.user.uid
-                    }
-                    localStorage.setItem('auth', JSON.stringify(userInfo));
-                    window.location = '/'
+                    window.location = "/"
                 })
                 .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
                     errors.catchErr = error.message;
                     this.didCatchError(errors)
                 });
@@ -97,32 +90,5 @@ class Login extends Component {
         )
     }
 }
-
-
-
-// const Login = ({
-//     history
-// }) => {
-//     if (localStorage.getItem('auth')) {
-//         history.push('/')
-//     }
-
-//     const onLoginHandler = (e) => {
-//         e.preventDefault();
-//         login(e.target)
-//     };
-//     return (
-//         <main className="login-form">
-//             <form onSubmit={onLoginHandler}>
-//                 <h1>Login</h1>
-//                 <label for="username">Username</label>
-//                 <input id="email" type="text" placeholder="E-mail" name="email"></input>
-//                 <label for="username">Password</label>
-//                 <input id="password" type="password" placeholder="******" name="password"></input>
-//                 <button type="submit">Login</button>
-//             </form>
-//         </main>
-//     )
-// }
 
 export default Login

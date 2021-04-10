@@ -7,7 +7,7 @@ const Main = ({
     title,
     showBrands
 }) => {
-    const noCars = cars.length == 0 ? true : false
+    const noCars = cars.length === 0 ? true : false
 
     return (
         <main>

@@ -1,10 +1,12 @@
-import style from './Footer.module.css';
+import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer>
-            <span>Copyright</span>
-        </footer>
+        <div className="footer-container">
+            <footer>
+                <span>Copyright</span>
+            </footer>
+        </div>
     )
 }
 

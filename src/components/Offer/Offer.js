@@ -7,6 +7,7 @@ import './Offer.css'
 
 
 const Offer = ({
+    userData,
     match,
     history
 }) => {

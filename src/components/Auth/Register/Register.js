@@ -1,11 +1,8 @@
-
 import { Component } from 'react';
 import './Register.css';
 
 import { register } from '../../../services/authService';
 import ErrorNotification from '../../Error/Error';
-import { Route, Switch } from 'react-router-dom'
-
 
 class Register extends Component {
     constructor(props) {
@@ -28,7 +25,7 @@ class Register extends Component {
     handleVerification() {
         let errors = {};
         let formIsValid = true;
-        if (this.state.email.length == 0) {
+        if (this.state.email.length === 0) {
             errors.email = 'Cannot be empty';
             formIsValid = false;
         }
@@ -39,7 +36,7 @@ class Register extends Component {
             formIsValid = false;
         }
 
-        if (this.state.password.length == 0) {
+        if (this.state.password.length === 0) {
             errors.password = 'Cannot be empty';
             formIsValid = false;
         }
@@ -66,12 +63,9 @@ class Register extends Component {
             let errors = {};
             register(e.target)
                 .then((user) => {
-                    window.location = '/login';
+                    window.location = '/';
                 })
                 .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(error);
                     errors.catchErr = error.message;
                     this.didCatchError(errors)
                 });

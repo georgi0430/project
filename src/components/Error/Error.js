@@ -1,4 +1,4 @@
-import { Component, useEffect, useState } from 'react';
+import { Component } from 'react';
 import './Error.css';
 
 class ErrorNotification extends Component {
