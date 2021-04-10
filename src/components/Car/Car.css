@@ -13,7 +13,7 @@
   }
   
   .product-card .price {
-    color: grey;
+    color: #00a800;
     font-size: 22px;
   }
   
@@ -22,7 +22,7 @@
     outline: 0;
     padding: 12px;
     color: white;
-    background-color: #000;
+    background-color: #171717;
     text-align: center;
     cursor: pointer;
     width: 100%;

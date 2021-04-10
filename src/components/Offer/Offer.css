@@ -8,7 +8,7 @@
 
 .info-container {
     width: 100%;
-    background-color: #f6f6f6;
+    background-color: #d5d5d5;
 }
 
 .offer-container #title {
@@ -31,10 +31,9 @@
 }
 
 .offer-container #price span {
-    color: blue;
+    color: #0000d8;
     font-size: 42px;
 }
-
 
 .hoverTable{
     width:100%;
@@ -47,7 +46,7 @@
 }
  
 .hoverTable .hover{
-    background: #f6f6f6;
+    background: #d5d5d5;
 }
 
 .hoverTable .hover:hover {

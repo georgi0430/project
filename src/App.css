@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background: linear-gradient( rgba(35, 68, 101, 0.7) 100%, rgba(0, 0, 0, 0.5)100%);
+  background: #3d3d3d;
 }
 
 .App-logo {
@@ -42,7 +42,7 @@
 main {
   width: 80%;
   height: 100%;
-  background: white;
+  background: #efefef;
   color: black;
   display: inline-block;
 }
