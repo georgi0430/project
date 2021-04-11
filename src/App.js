@@ -72,7 +72,7 @@ class App extends Component {
           <Header userData={this.state.currentUser} />
           <Switch>
             <Route path="/" exact>
-              <Main title="Sale Products" cars={this.getCars()} showBrands="true" showSold="true" />
+              <Main title="Cars for Sale" cars={this.getCars()} showBrands="true" showSold="true" />
             </Route>
             <Route path="/offer/:id" exact component={isAuth(Offer)} />
             <Route path="/offer/:id/edit" exact component={isAuth(EditOffer)} />
