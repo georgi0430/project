@@ -25,6 +25,7 @@ const getAllSearch = (e) => {
         }
         return null;
     })
+    console.log(data);
 
     let firstResults = [];
     let finalResults = [];

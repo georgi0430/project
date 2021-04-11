@@ -7,6 +7,8 @@ const Car = ({
     imageUrl,
     price
 }) => {
+
+    console.log(brand);
     
     let formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',

@@ -3,12 +3,21 @@ import Car from '../Car/Car'
 import Brands from '../Brands/Brands';
 import Sold from '../Cars/Sold/Sold';
 
+import { useState } from 'react';
 
 const Main = ({
     cars,
     title,
     showBrands
 }) => {
+
+    const [visible, setVisible] = useState(6);
+
+    let loadMore = (e) => {
+        let newState = visible + 6
+        setVisible(newState)
+    }
+
     const noCars = cars.length === 0 ? true : false
 
     return (
@@ -20,7 +29,8 @@ const Main = ({
                 </div>
                 :
                 <div>
-                    {cars.map(x =>
+
+                    {cars.slice(0, visible).map(x =>
                         <Car
                             key={x.id}
                             id={x.id}
@@ -35,10 +45,16 @@ const Main = ({
                             price={x.price}
                         />
                     )}
+                    <div className="show-more">
 
+                    {visible < cars.length &&
+                        <button onClick={loadMore} type="button" className="load-more">Load more</button>
+                    }
+                    </div>
+                    
                 </div>
             }
-            
+
             <Sold />
 
             {showBrands ? <Brands /> : null}

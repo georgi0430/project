@@ -1,9 +1,6 @@
 import { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-// import logo from './logo.svg';
-
-
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Offer from './components/Offer/Offer';
