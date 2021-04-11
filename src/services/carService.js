@@ -5,6 +5,12 @@ const getAll = () => {
 }
 
 const getAllByBrand = (brand) => {
+    firebase.firestore().collection('cars').where('brand_lowercase', '==', brand.toLowerCase()).get()
+    .then(res => {
+        res.forEach(doc => {
+            console.log(doc.data());
+        })
+    })
     return firebase.firestore().collection('cars').where('brand_lowercase', '==', brand.toLowerCase()).get()
 }
 
@@ -17,6 +23,10 @@ const getAllForUser = (uid) => {
     return firebase.firestore().collection('cars').where('creator', '==', uid).get()
 }
 
+const getAllBoughtByUser = (uid) => {
+    return firebase.firestore().collection('cars').where('buyer', '==', uid).get()
+}
+
 const getAllSearch = (e) => {
     let data = {};
     Object.entries(e).map(x => {
@@ -25,8 +35,11 @@ const getAllSearch = (e) => {
         }
         return null;
     })
-    console.log(data);
 
+    let advancedSearch = false
+    if(data.model) {
+        advancedSearch = true
+    }
     let firstResults = [];
     let finalResults = [];
     return getAllByBrand(data.brand.toLowerCase())
@@ -38,18 +51,21 @@ const getAllSearch = (e) => {
                 Object.assign(data, doc.data())
                 firstResults.push(data)
             })
-            firstResults.forEach(obj => {
-                let isMatch = true;
-                Object.entries(data).forEach(([key, value]) => {
-                    if (value.toLowerCase() !== obj[key].toLowerCase()) {
-                        isMatch = false
+            if(advancedSearch) {
+                firstResults.forEach(obj => {
+                    let isMatch = true;
+                    Object.entries(data).forEach(([key, value]) => {
+                        if (value.toLowerCase() !== obj[key].toLowerCase()) {
+                            isMatch = false
+                        }
+                    })
+                    if (isMatch) {
+                        finalResults.push(obj)
                     }
                 })
-                if (isMatch) {
-                    finalResults.push(obj)
-                }
-            })
-            return finalResults;
+                return finalResults;
+            }
+            return firstResults
         })
         .catch(err => console.log(err))
 }
@@ -139,6 +155,7 @@ export {
     getOne,
     getAllByBrand,
     getAllForUser,
+    getAllBoughtByUser,
     getAllSold,
     getAllSearch,
     create,

@@ -129,7 +129,7 @@ class Form extends Component {
                                 <option value="Audi">Audi</option>
                                 <option value="Toyota">Toyota</option>
                                 <option value="VW">VW</option>
-                                <option value="Mercedes Benz">Mercedes Benz</option>
+                                <option value="MercedesBenz">Mercedes Benz</option>
                                 <option value="Honda">Honda</option>
                                 <option value="Mitsubishi">Mitsubishi</option>
                             </select>
@@ -139,7 +139,7 @@ class Form extends Component {
                                 <option value="Audi">Audi</option>
                                 <option value="Toyota">Toyota</option>
                                 <option value="VW">VW</option>
-                                <option value="Mercedes Benz">Mercedes Benz</option>
+                                <option value="MercedesBenz">Mercedes Benz</option>
                                 <option value="Honda">Honda</option>
                                 <option value="Mitsubishi">Mitsubishi</option>
                             </select>

@@ -8,7 +8,8 @@ import { useState } from 'react';
 const Main = ({
     cars,
     title,
-    showBrands
+    showBrands,
+    showSold
 }) => {
 
     const [visible, setVisible] = useState(6);
@@ -55,7 +56,7 @@ const Main = ({
                 </div>
             }
 
-            <Sold />
+            {showSold ? <Sold /> : null}
 
             {showBrands ? <Brands /> : null}
 
