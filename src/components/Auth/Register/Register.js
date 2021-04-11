@@ -16,12 +16,6 @@ class Register extends Component {
         }
     }
 
-    componentDidMount() {
-        if (localStorage.getItem('auth')) {
-            window.location = "/"
-        }
-    }
-
     handleVerification() {
         let errors = {};
         let formIsValid = true;
